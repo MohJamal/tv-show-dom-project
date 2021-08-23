@@ -1,3 +1,87 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  direction: ltr;
+  font-family: sans-serif;
+  color: #000;
+  font-size: 12px;
+  background-color: #f6f6f6;
+}
+
+ul {
+  list-style-type: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
 #root {
-  color: red;
+  width: 90%;
+  margin: 0 auto;
+}
+
+#grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-column-gap: 50px;
+  grid-row-gap: 30px;
+  padding: 20px;
+  border: 1px solid #000;
+}
+.card {
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 2px 3px 8px 8px rgba(0, 0, 0, 0.2);
+  height: 500px;
+}
+
+.card #header {
+  border: 1px solid #000;
+  border-radius: 5px;
+  padding: 20px 40px;
+  font-size: 0.9em;
+}
+
+.card #header a {
+  color: inherit;
+  text-decoration: underline 0.15em rgba(255, 255, 255, 0);
+  transition: text-decoration-color 300ms;
+  /*need for text-overflow:ellipse*/
+  display: flex;
+  justify-content: center;
+}
+
+.card #header a:hover {
+  text-decoration-color: rgb(73, 73, 73);
+}
+
+.card #header a span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: inline-block;
+  max-width: 180px;
+  margin-right: 5px;
+}
+
+.card #main {
+  padding: 20px 40px;
+}
+
+.card p {
+  margin-top: 10px;
+  color: #888888;
+  font-size: 1.1em;
+  line-height: 20px;
 }
