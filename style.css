@@ -29,15 +29,42 @@ img {
 #root {
   width: 90%;
   margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #000;
 }
 
+/*header start*/
+header {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  font-size: 1.3em;
+}
+
+header input[type="text"] {
+  height: 30px;
+  padding: 10px;
+  font-size: 1.1em;
+  width: 200px;
+  margin-right: 10px;
+}
+
+header input[type="text"]::placeholder {
+  font-size: 1em;
+}
+
+header span {
+  color: #737171;
+  font-weight: bold;
+}
+
+/*grid start*/
 #grid {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-column-gap: 50px;
   grid-row-gap: 30px;
-  padding: 20px;
-  border: 1px solid #000;
 }
 .card {
   background-color: #fff;
