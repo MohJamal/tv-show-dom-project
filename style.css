@@ -42,12 +42,22 @@ header {
   font-size: 1.3em;
 }
 
-header input[type="text"] {
-  height: 30px;
-  padding: 10px;
+header select,
+input {
   font-size: 1.1em;
-  width: 200px;
+  height: 30px;
   margin-right: 10px;
+}
+
+header select {
+  background-color: #b1b1b173;
+  padding-left: 10px;
+  width: 250px;
+}
+
+header input[type="text"] {
+  padding: 10px;
+  width: 200px;
 }
 
 header input[type="text"]::placeholder {
