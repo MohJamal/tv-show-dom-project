@@ -1,11 +1,26 @@
 const grid = document.getElementById("grid");
 
 //You can edit ALL of the code here
-function setup() {
-  const allEpisodes = getAllEpisodes();
-  makePageForEpisodes(allEpisodes);
-  live_search(allEpisodes);
-  episode_selector(allEpisodes);
+async function setup() {
+  let episodes = [];
+
+  try {
+    episodes = await getAllEpisodes();
+  } catch (error) {
+    console.log("Error!", error);
+  }
+
+  makePageForEpisodes(episodes);
+  live_search(episodes);
+  episode_selector(episodes);
+}
+
+/* getAllEpisodes */
+
+async function getAllEpisodes() {
+  const response = await fetch("https://api.tvmaze.com/shows/82/episodes");
+  const episodes = await response.json();
+  return episodes;
 }
 
 /* makePageForEpisodes*/
