@@ -1,11 +1,19 @@
 const grid = document.getElementById("grid");
+const select_show = document.getElementById("select_show");
+
+add_show_list();
+
+select_show.addEventListener("input", (event) => {
+  let show_id =
+    event.target.options[select_show.selectedIndex].getAttribute("show_id");
+  setup(show_id);
+});
 
 //You can edit ALL of the code here
-async function setup() {
+async function setup(show_id) {
   let episodes = [];
-
   try {
-    episodes = await getAllEpisodes();
+    episodes = await get_show_episodes(show_id);
   } catch (error) {
     console.log("Error!", error);
   }
@@ -15,10 +23,27 @@ async function setup() {
   episode_selector(episodes);
 }
 
-/* getAllEpisodes */
+/* Show Selector */
+function add_show_list() {
+  const show_list = getAllShows();
+  const select = document.getElementById("select_show");
+  let position = "beforeend";
+  let select_show = `<option value="Select Show">Select Show</option>`;
+  select.insertAdjacentHTML(position, select_show);
 
-async function getAllEpisodes() {
-  const response = await fetch("https://api.tvmaze.com/shows/82/episodes");
+  show_list.forEach((show) => {
+    let option = `<option value="${show.name}" show_id=${show.id}>${show.name}</option>`;
+
+    select.insertAdjacentHTML(position, option);
+  });
+}
+
+/* get_show_episodes */
+
+async function get_show_episodes(show_id) {
+  const response = await fetch(
+    `https://api.tvmaze.com/shows/${show_id}/episodes`
+  );
   const episodes = await response.json();
   return episodes;
 }
@@ -28,7 +53,7 @@ async function getAllEpisodes() {
 function makePageForEpisodes(episodeList) {
   // const rootElem = document.getElementById("root");
   // rootElem.textContent = `Got ${episodeList.length} episode(s)`;
-
+  grid.innerHTML = "";
   episodeList.forEach((episode) => {
     let card = `
       <div class="card">
@@ -83,7 +108,8 @@ function live_search(episodeList) {
 /* Episode Selector */
 
 function episode_selector(episodeList) {
-  const select = document.getElementById("select");
+  const select = document.getElementById("select_episode");
+  select.innerHTML = "";
   let position = "beforeend";
   let all_episodes = `<option value="All Episodes">All Episodes</option>`;
   select.insertAdjacentHTML(position, all_episodes);
@@ -129,4 +155,4 @@ function text_combine(name, season, number, ltr) {
     : `S${s}E${n} - <span>${name}</span>`;
 }
 
-window.onload = setup;
+// window.onload = setup;
